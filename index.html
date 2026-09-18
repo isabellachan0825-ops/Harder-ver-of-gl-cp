@@ -245,26 +245,26 @@
   </div>
 
   <script>
-    // 已更新為最新圖片檔名與正確 CP 對應
+    // 依據 GitHub 儲存庫實際檔名精確配置（移除 _2）
     const rawData = [
       { id: 1, name: "Lingling", img: "IMG_3907.jpeg" },
       { id: 1, name: "Orm", img: "IMG_3908.jpeg" },
-      { id: 2, name: "Freen", img: "IMG_3882_2.jpeg" },
-      { id: 2, name: "Becky", img: "IMG_3884_2.jpeg" },
-      { id: 3, name: "Lena", img: "IMG_3891_2.jpeg" },
-      { id: 3, name: "Miu", img: "IMG_3889_2.jpeg" },
-      { id: 4, name: "Oom", img: "IMG_3887_2.jpeg" },
-      { id: 4, name: "Bam", img: "IMG_3885_2.jpeg" },
-      { id: 5, name: "Emi", img: "IMG_3892_2.jpeg" },
-      { id: 5, name: "Bonnie", img: "IMG_3890_2.jpeg" },
-      { id: 6, name: "Jan", img: "IMG_3893_2.jpeg" },
-      { id: 6, name: "JingJing", img: "IMG_3894_2.jpeg" },
-      { id: 7, name: "Namtan", img: "IMG_3901_2.jpeg" },
-      { id: 7, name: "Film", img: "IMG_3900_2.jpeg" },
-      { id: 8, name: "Milk", img: "IMG_3899_2.jpeg" },
-      { id: 8, name: "Love", img: "IMG_3897_2.jpeg" },
-      { id: 9, name: "Engfa", img: "IMG_3896_2.jpeg" },
-      { id: 9, name: "Charlotte", img: "IMG_3895_2.jpeg" }
+      { id: 2, name: "Freen", img: "IMG_3882.jpeg" },
+      { id: 2, name: "Becky", img: "IMG_3884.jpeg" },
+      { id: 3, name: "Lena", img: "IMG_3891.jpeg" },
+      { id: 3, name: "Miu", img: "IMG_3889.jpeg" },
+      { id: 4, name: "Oom", img: "IMG_3887.jpeg" },
+      { id: 4, name: "Bam", img: "IMG_3885.jpeg" },
+      { id: 5, name: "Emi", img: "IMG_3892.jpeg" },
+      { id: 5, name: "Bonnie", img: "IMG_3890.jpeg" },
+      { id: 6, name: "Jan", img: "IMG_3893.jpeg" },
+      { id: 6, name: "JingJing", img: "IMG_3894.jpeg" },
+      { id: 7, name: "Namtan", img: "IMG_3901.jpeg" },
+      { id: 7, name: "Film", img: "IMG_3900.jpeg" },
+      { id: 8, name: "Milk", img: "IMG_3899.jpeg" },
+      { id: 8, name: "Love", img: "IMG_3897.jpeg" },
+      { id: 9, name: "Engfa", img: "IMG_3896.jpeg" },
+      { id: 9, name: "Charlotte", img: "IMG_3895.jpeg" }
     ];
 
     let cardsData = [];
@@ -362,7 +362,6 @@
       }
     }
 
-    // 逐組揭曉與 Combo 慶祝動畫
     function checkAnswers() {
       if (userPairs.length < 9) {
         alert(`還有卡片沒配對完喔！目前完成 ${userPairs.length} / 9 組`);
@@ -385,7 +384,6 @@
       let correctCount = 0;
       let currentCombo = 0;
 
-      // 逐組非同步揭曉
       userPairs.forEach((pair, index) => {
         setTimeout(() => {
           const isCorrect = (pair.card1.id === pair.card2.id) && (pair.card1.name !== pair.card2.name);
@@ -405,19 +403,16 @@
 
           reportList.appendChild(itemDiv);
 
-          // 觸發進場動畫
           setTimeout(() => itemDiv.classList.add('show'), 50);
 
           if (isCorrect) {
             correctCount++;
             currentCombo++;
 
-            // 連勝特效 (Combo >= 2)
             if (currentCombo >= 2) {
               comboBanner.innerText = `🔥 COMBO x${currentCombo}!`;
               comboBanner.classList.add('active');
 
-              // 噴發彩花動畫
               if (typeof confetti === 'function') {
                 confetti({
                   particleCount: 30 * currentCombo,
@@ -427,11 +422,10 @@
               }
             }
           } else {
-            currentCombo = 0; // 斷 Combo
+            currentCombo = 0;
             comboBanner.classList.remove('active');
           }
 
-          // 全數揭曉完畢，結算總評級
           if (index === userPairs.length - 1) {
             setTimeout(() => {
               comboBanner.classList.remove('active');
@@ -453,7 +447,7 @@
             }, 600);
           }
 
-        }, index * 400); // 每 0.4 秒揭曉一組
+        }, index * 400);
       });
     }
 
